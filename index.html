@@ -3,39 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>navbar</title>
+    <title>project</title>
     <style>
-        *{
-            padding: 0%;
-            margin: 0%;
-            box-sizing: border-box;
-        }
-        @media screen and (max-width:768px) {
-        
-.container{
-    font-size: 20px;
-    background-color: blue;
-    height: 10vh;
-    width: 200vw;
-}}
-li{
-    list-style-type: none ;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
-ul{
+@media  screen and (max-width:768px) {
+    
+html,
+body {
+    background-color: black;
+    width: 100%;
+    min-height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* main navigation container */
+.navbar {
     display: flex;
-    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: yellowgreen;
+    width: 100%;
+    padding: 0 20px;
 }
+
+.navbarlist {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 10px;
+}
+
+.navbarlist li a {
+    text-decoration: none;
+    padding: 12px 16px;
+    color: aliceblue;
+    display: block;
+}
+
+/* right side items (search, buttons, etc.) */
+.rightnav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#search {
+    padding: 5px;
+    font-size: 17px;
+    border-radius: 5px;
+}
+
+.btn {
+    height: 35px;
+    width: 70px;
+    border-radius: 8px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+}
+/* responsive tweaks */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: row;
+        align-items: stretch;
+        display: flex;
+    }
+    .navbarlist {
+        flex-direction: column;
+        width: 100%;
+    }
+    .navbarlist li{
+        display: flex;
+    }
+    .navbarlist li a {
+        padding: 10px;
+        text-align: center;
+    }
+    .rightnav {
+        justify-content: center;
+        margin-top: 10px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    #search {
+        width: 100%;
+    }
+    .btn {
+        width: 100%;
+    }
+}
+
+
 
     </style>
 </head>
 <body>
- <div class="container">
+  <header>
+    <!-- start navbar -->
+<nav class="navbar">
 
-    <ul class="nvabar">
-        <li>Home</li>
-        <li>Contact</li>
-        <li>About Us</li>
+    <ul class="navbarlist">
+<li><a href="#">Home</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#">Contact</a></li>
+<li><a href="#">Services</a></li>
     </ul>
- </div>   
+    <div class="rightnav">
+        <input type="text" placeholder="search here" name="search" id="search">
+        <button class="btn">search</button>
+    </div>
+    <!-- end of navbar -->
+</nav>
+  </header>  
+
+  <main>
+
+
+  </main>
+
+  <footer>
+
+
+  </footer>
 </body>
 </html>
+

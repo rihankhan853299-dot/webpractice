@@ -1,57 +1,49 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-
-*{
-padding:0;
-margin:0;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Hub</title>
+    <style>
+    @media  screen and (max-width: 768px) {
+        *{
+    padding: 0;
+    margin: 0;
 }
 
-body{
-background-color:chartreuse;
-}
+        body{
+            background-color: blanchedalmond;
+            height: 100%;
+            width: 100%;
+        }
+        .navbar{
+            display: flex;
+            width: 100%;
+            height: 50px;
+            background-color: black;
+        }
 
-.navbar{
-display:flex;
-width:100%;
-background:black;
-}
-
-.navbarlist{
-display:flex;
-width:60%;
-background:red;
-}
-
-.navbarlist li{
-list-style:none;
-text-align:center;
-padding:15px;
-}
-
-.navbarlist li a{
-text-decoration:none;
-color:white;
-}
-
-</style>
+        .navbar li{
+            list-style: none;
+            padding: 15px;
+        }
+        .navbar li a{
+            text-decoration: none;
+            color: cyan;
+        }
+        .logo{
+            width: 20%;
+            margin-left: 1100px;
+        }
+    }
+    </style>
 </head>
-
 <body>
-
-<nav class="navbar">
-
-<ul class="navbarlist">
-
-<li><a href="">HOME</a></li>
-<li><a href="">BOLLYWOOD</a></li>
-<li><a href="">WEBSERIES</a></li>
-
-</ul>
-
-</nav>
-
+   <ul class="navbar">
+    <li><a href="#">HOME</a></li>
+    <li><a href="#">BOLLYWOOD</a></li>
+    <li><a href="#">HOLLYWOOD</a></li>
+    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Music_logo.png?_=20220615234239" alt="logo">
+   </ul> 
 </body>
 </html>

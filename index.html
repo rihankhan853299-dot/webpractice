@@ -1,53 +1,59 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>responsive</title>
-    <style>
-        @media screen and (max-width:770px) {
-            *{
-                padding: 0;
-                margin: 0;
-            }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+*{
+padding:0;
+margin:0;
+}
+
 body{
-    background-color: chartreuse;
-    height: 100%;
-    width: 100%;
+background-color:chartreuse;
 }
+
 .navbar{
-  display: flex;
-  width: 100%;
-background-color:black;
-
+display:flex;
+width:100%;
+background:black;
 }
+
 .navbarlist{
-    display: flex;
+display:flex;
 width:60%;
-background-color:red;
+background:red;
 }
+
 .navbarlist li{
 flex:1;
-    padding:15px;
- list-style-type: none;
+list-style:none;
+text-align:center;
+padding:15px;
 }
+
 .navbarlist li a{
-    text-decoration: none;
+text-decoration:none;
 color:white;
 }
-        
-        }
-    </style>
+
+</style>
 </head>
+
 <body>
- <nav class="navbar">
-    <ul class="navbarlist">
+
+<nav class="navbar">
+
+<ul class="navbarlist">
+
 <li><a href="">HOME</a></li>
 <li><a href="">BOLLYWOOD</a></li>
 <li><a href="">WEBSERIES</a></li>
+
 </ul>
+
 </nav>
- </nav>   
+
 </body>
 </html>

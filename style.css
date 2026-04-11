@@ -125,6 +125,7 @@ body {
 /* crousel */
 
 .carousel {
+margin-top:5px;
   position: relative;
   width: 100%;
   height: 500px;

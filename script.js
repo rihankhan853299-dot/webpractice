@@ -1,65 +1,139 @@
-/*crausel code */
-let index = 0;
-const slides = document.querySelector(".slides");
-const slide = document.querySelectorAll(".slide");
-const total = slide.length;
-const dotsContainer = document.querySelector(".dots");
+let khataRegister = JSON.parse(localStorage.getItem("proKhata")) || {};
 
-// Create dots
-for (let i = 0; i < total; i++) {
-  let dot = document.createElement("span");
-  dot.addEventListener("click", () => {
-    index = i;
-    update();
-  });
-  dotsContainer.appendChild(dot);
+function calculateShopTotal() {
+    let totalDukanKaUdhar = 0;
+    for (let grahak in khataRegister) {
+        totalDukanKaUdhar += khataRegister[grahak].totalBalance;
+    }
+    document.getElementById("totalShopBalance").innerText = "₹" + totalDukanKaUdhar;
 }
 
-const dots = document.querySelectorAll(".dots span");
+function addTransaction(type) {
+    let name = document.getElementById("customerName").value.trim();
+    let money = Number(document.getElementById("amount").value);
+    let items = document.getElementById("items").value;
 
-function update() {
-  slides.style.transform = `translateX(-${index * 100}%)`;
+    if (name === "" || money <= 0) {
+        alert("Bhai, naam aur paise sahi se likho!");
+        return;
+    }
 
-  slide.forEach(s => s.classList.remove("active"));
-  slide[index].classList.add("active");
+    let now = new Date();
+    let exactTime = now.toLocaleString("en-IN");
 
-  dots.forEach(d => d.classList.remove("active"));
-  dots[index].classList.add("active");
+    if (khataRegister[name] === undefined) {
+        khataRegister[name] = { totalBalance: 0, history:[] };
+    }
+
+    if (type === 'udhar') {
+        khataRegister[name].totalBalance += money;
+        khataRegister[name].history.push({
+            type: 'udhar',
+            amount: money,
+            samaan: items || "Udhar Samaan",
+            time: exactTime
+        });
+    } else if (type === 'jama') {
+        khataRegister[name].totalBalance -= money;
+        khataRegister[name].history.push({
+            type: 'jama',
+            amount: money,
+            samaan: items || "Paise Jama Kiye",
+            time: exactTime
+        });
+    }
+
+    localStorage.setItem("proKhata", JSON.stringify(khataRegister));
+
+    document.getElementById("customerName").value = "";
+    document.getElementById("amount").value = "";
+    document.getElementById("items").value = "";
+
+    updateScreen();
 }
 
-// Buttons
-document.querySelector(".next").onclick = () => {
-  index = (index + 1) % total;
-  update();
-};
+// 🌟 NAYA FUNCTION: WhatsApp par Detail Bhejna
+function sendToWhatsApp(grahakKaNaam) {
+    let grahakKaData = khataRegister[grahakKaNaam];
+    
+    // Line 1: Message banana shuru karo ( \n ka matlab hai Nayi Line yani Enter dabana )
+    let message = `📘 *Mera KhataBook Statement* 📘\n\n`;
+    message += `👤 *Grahak ka Naam:* ${grahakKaNaam}\n`;
+    message += `💰 *Aapka Baki Balance:* ₹${grahakKaData.totalBalance}\n\n`;
+    message += `*--- Aapke Hisaab ki Details ---*\n`;
 
-document.querySelector(".prev").onclick = () => {
-  index = (index - 1 + total) % total;
-  update();
-};
+    // Line 2: Grahak ki history mein loop chalakar ek-ek bill msg mein dalo
+    grahakKaData.history.forEach(function(bill) {
+        let nishan = bill.type === 'udhar' ? '+ ₹' : '- ₹';
+        message += `🗓️ ${bill.time}\n📝 ${bill.samaan} : ${nishan}${bill.amount}\n\n`;
+    });
 
-// Auto Slide
-setInterval(() => {
-  index = (index + 1) % total;
-  update();
-}, 3000);
+    message += `🙏 Kripya apna hisaab check kar lein. Koi gadbad ho toh batayein!`;
 
-// Swipe (Mobile)
-let startX = 0;
+    // Line 3: Is normal text message ko "Internet (URL)" ke samajhne layk code mein badalna
+    let internetWalaMessage = encodeURIComponent(message);
 
-slides.addEventListener("touchstart", e => {
-  startX = e.touches[0].clientX;
-});
+    // Line 4: WhatsApp ki website ya App kholna, message ke saath
+    let whatsappLink = `https://wa.me/?text=${internetWalaMessage}`;
+    
+    // Naye tab (panna) mein link khol do
+    window.open(whatsappLink, '_blank');
+}
 
-slides.addEventListener("touchend", e => {
-  let endX = e.changedTouches[0].clientX;
-  if (startX > endX + 50) {
-    index = (index + 1) % total;
-  } else if (startX < endX - 50) {
-    index = (index - 1 + total) % total;
-  }
-  update();
-});
+function updateScreen(searchWord = "") {
+    let listDiv = document.getElementById("accountList");
+    listDiv.innerHTML = "";
 
-// Init
-update();
+    for (let grahak in khataRegister) {
+        if (grahak.toLowerCase().includes(searchWord.toLowerCase())) {
+            
+            let grahakKaData = khataRegister[grahak];
+            let historyHTML = "";
+            let reversedHistory =[...grahakKaData.history].reverse();
+
+            reversedHistory.forEach(function(bill) {
+                let amountColorClass = bill.type === 'udhar' ? 'text-red' : 'text-green';
+                let sign = bill.type === 'udhar' ? '+ ₹' : '- ₹';
+
+                historyHTML += `
+                    <li class="history-item">
+                        <div>
+                            <span>${bill.samaan}</span>
+                            <span class="date-time">🕒 ${bill.time}</span>
+                        </div>
+                        <span class="${amountColorClass}">${sign}${bill.amount}</span>
+                    </li>
+                `;
+            });
+
+            let balanceColor = grahakKaData.totalBalance > 0 ? "color: #dc3545;" : "color: #28a745;";
+
+            // 🌟 UPDATE: Yahan maine "WhatsApp Par Bhejein" wala naya button add kiya hai
+            listDiv.innerHTML += `
+                <div class="account-card">
+                    <div class="card-header" style="flex-direction: column;">
+                        <div style="display: flex; justify-content: space-between; width: 100%;">
+                            <h4>👤 ${grahak}</h4>
+                            <span class="total-amt" style="${balanceColor}">₹${grahakKaData.totalBalance} Baki</span>
+                        </div>
+                        <button class="btn-whatsapp" onclick="sendToWhatsApp('${grahak}')">
+                            📲 WhatsApp Par Pura Hisaab Bhejein
+                        </button>
+                    </div>
+                    <ul class="history-list">
+                        ${historyHTML}
+                    </ul>
+                </div>
+            `;
+        }
+    }
+    
+    calculateShopTotal();
+}
+
+function searchCustomer() {
+    let word = document.getElementById("searchInput").value;
+    updateScreen(word);
+}
+
+updateScreen();

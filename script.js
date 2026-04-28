@@ -57,7 +57,7 @@ function sendToWhatsApp(grahakKaNaam) {
     let grahakKaData = khataRegister[grahakKaNaam];
     
     // Line 1: Message banana shuru karo ( \n ka matlab hai Nayi Line yani Enter dabana )
-    let message = `📘 *Mera KhataBook Statement* 📘\n\n`;
+    let message = `📘 *Jamshaid Kirana store udhaar Statement* 📘\n\n`;
     message += `👤 *Grahak ka Naam:* ${grahakKaNaam}\n`;
     message += `💰 *Aapka Baki Balance:* ₹${grahakKaData.totalBalance}\n\n`;
     message += `*--- Aapke Hisaab ki Details ---*\n`;

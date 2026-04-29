@@ -1,44 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- HTML5 ka ailan karte hain, taaki browser ko pata chale ye modern website hai -->
+<!DOCTYPE html> 
+<!-- Website ki bhasha English (en) set ki hai -->
+<html lang="en"> 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pro KhataBook</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- Character set UTF-8 hai, taaki sabhi symbols aur hindi fonts sahi se dikhein -->
+    <meta charset="UTF-8"> 
+    <!-- Mobile par website ko chhota ya fit karne ke liye Viewport tag lagaya hai -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Browser ke tab par jo naam dikhega -->
+    <title>Pro KhataBook V5</title> 
+    <!-- Hamari CSS file ko is HTML se jodna (connect karna) -->
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
 
-    <div class="app-container">
-        <!-- Dashboard: Dukan ka Total Udhar -->
-        <div class="dashboard">
-            <p>jamshed kirana store Ka Total Udhar</p>
-            <h1 id="totalShopBalance">₹0</h1>
+    <!-- Ye hamari poori app ka main dabba (Container) hai -->
+    <div class="app-container"> 
+        
+        <!-- Dukan ka Dashboard, jahan total paise dikhenge -->
+        <div class="dashboard"> 
+            <!-- Chhoti heading -->
+            <p>Dukan Ka Total Udhar</p> 
+            <!-- Badi heading jisme Javascript se total paise aayenge -->
+            <h1 id="totalShopBalance">₹0</h1> 
         </div>
 
-        <!-- Search Bar -->
-        <div class="search-section">
-            <input type="text" id="searchInput" onkeyup="searchCustomer()" placeholder="🔍 Grahak dhoondhein...">
+        <!-- Search bar wala dabba -->
+        <div class="search-section"> 
+            <!-- Input box jisme onkeyup (type karte hi) search function chalega -->
+            <input type="text" id="searchInput" onkeyup="searchCustomer()" placeholder="🔍 Grahak dhoondhein..."> 
         </div>
 
-        <!-- Entry wala dabba -->
-        <div class="card input-section">
-            <input type="text" id="customerName" placeholder="👤 Grahak ka naam">
-            <input type="number" id="amount" placeholder="₹ Kitne rupiye?">
-            <input type="text" id="items" placeholder="🛍️ Samaan (ya Jama ki detail)">
+        <!-- Naya Udhar ya Jama likhne wala dabba -->
+        <div class="card input-section"> 
+            <!-- Grahak ka naam likhne ki jagah -->
+            <input type="text" id="customerName" placeholder="👤 Grahak ka naam"> 
+            <!-- Paise likhne ki jagah (sirf number) -->
+            <input type="number" id="amount" placeholder="₹ Kitne rupiye?"> 
+            <!-- Samaan likhne ki jagah -->
+            <input type="text" id="items" placeholder="🛍️ Samaan ki detail"> 
             
-            <!-- Do alag buttons: Udhar ke liye Lal, Jama ke liye Hara -->
-            <div class="button-group">
-                <button class="btn-udhar" onclick="addTransaction('udhar')">Udhar Likh Do</button>
-                <button class="btn-jama" onclick="addTransaction('jama')">Paise Jama Karlo</button>
+            <!-- Buttons ko ek line mein rakhne wala dabba -->
+            <div class="button-group"> 
+                <!-- Lal button, isko dabane par Udhar add hoga -->
+                <button class="btn-udhar" onclick="addTransaction('udhar')">Udhar Likh Do</button> 
+                <!-- Hara button, isko dabane par Jama hoga -->
+                <button class="btn-jama" onclick="addTransaction('jama')">Paise Jama Karlo</button> 
             </div>
         </div>
 
-        <!-- Grahakon ki List -->
-        <div id="accountList" class="list-section">
+        <!-- Wo khali dabba jahan JS sabhi grahako ki list banayegi -->
+        <div id="accountList" class="list-section"> 
             <!-- JS yahan data bharegi -->
         </div>
+
     </div>
 
-    <script src="script.js"></script>
+    <!-- Hamari Javascript (Dimag) file ko HTML se jodna -->
+    <script src="script.js"></script> 
 </body>
 </html>

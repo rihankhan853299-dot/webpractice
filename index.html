@@ -1,62 +1,103 @@
-<!-- HTML5 ka ailan karte hain, taaki browser ko pata chale ye modern website hai -->
-<!DOCTYPE html> 
-<!-- Website ki bhasha English (en) set ki hai -->
-<html lang="en"> 
+<!DOCTYPE html>
+<html lang="hi">
 <head>
-    <!-- Character set UTF-8 hai, taaki sabhi symbols aur hindi fonts sahi se dikhein -->
-    <meta charset="UTF-8"> 
-    <!-- Mobile par website ko chhota ya fit karne ke liye Viewport tag lagaya hai -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <!-- Browser ke tab par jo naam dikhega -->
-    <title>Pro KhataBook V5</title> 
-    <!-- Hamari CSS file ko is HTML se jodna (connect karna) -->
-    <link rel="stylesheet" href="style.css"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Game Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@700;800&family=Noto+Sans+Devanagari:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Ye hamari poori app ka main dabba (Container) hai -->
-    <div class="app-container"> 
-        
-        <!-- Dukan ka Dashboard, jahan total paise dikhenge -->
-        <div class="dashboard"> 
-            <!-- Chhoti heading -->
-            <p>Dukan Ka Total Udhar</p> 
-            <!-- Badi heading jisme Javascript se total paise aayenge -->
-            <h1 id="totalShopBalance">₹0</h1> 
-        </div>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
 
-        <!-- Search bar wala dabba -->
-        <div class="search-section"> 
-            <!-- Input box jisme onkeyup (type karte hi) search function chalega -->
-            <input type="text" id="searchInput" onkeyup="searchCustomer()" placeholder="🔍 Grahak dhoondhein..."> 
-        </div>
+    <main class="dashboard-wrapper">
+        <header class="main-header">
+            <h1 class="header-title">Live Result</h1>
+            <div class="result-container">
+                <p class="main-result">93</p>
+                <span class="live-badge"><span class="dot"></span> LIVE</span>
+            </div>
+        </header>
 
-        <!-- Naya Udhar ya Jama likhne wala dabba -->
-        <div class="card input-section"> 
-            <!-- Grahak ka naam likhne ki jagah -->
-            <input type="text" id="customerName" placeholder="👤 Grahak ka naam"> 
-            <!-- Paise likhne ki jagah (sirf number) -->
-            <input type="number" id="amount" placeholder="₹ Kitne rupiye?"> 
-            <!-- Samaan likhne ki jagah -->
-            <input type="text" id="items" placeholder="🛍️ Samaan ki detail"> 
-            
-            <!-- Buttons ko ek line mein rakhne wala dabba -->
-            <div class="button-group"> 
-                <!-- Lal button, isko dabane par Udhar add hoga -->
-                <button class="btn-udhar" onclick="addTransaction('udhar')">Udhar Likh Do</button> 
-                <!-- Hara button, isko dabane par Jama hoga -->
-                <button class="btn-jama" onclick="addTransaction('jama')">Paise Jama Karlo</button> 
+        <div class="control-panel">
+            <div class="action-buttons">
+                <button class="btn btn-play" onclick="window.location.href='https://wa.me/919045345199?text=mujhe%20Game%20Play%20karna%20h'">
+                    <i class="fas fa-gamepad"></i> Play GAME
+                </button>
+                <button class="btn btn-vip"><i class="fas fa-crown"></i> VIP GAME</button>
+                <button class="btn btn-rules" id="rulesBtn">
+                    <i class="fas fa-book"></i> GAME Rules
+                </button>
+            </div>
+
+            <div class="guessing-box">
+                <div class="guessing-inner">
+                    <h2 class="guessing-title"><i class="fas fa-lightbulb"></i> आज की Guessing</h2>
+                    <div class="guessing-item">
+                        <span class="label">Single Digit</span>
+                        <span class="data">5, 9, 7, 3, 2</span>
+                    </div>
+                    <div class="guessing-item">
+                        <span class="label">Double Digit</span>
+                        <span class="data">23, 44, 55, 68, 89, 97, 98</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Wo khali dabba jahan JS sabhi grahako ki list banayegi -->
-        <div id="accountList" class="list-section"> 
-            <!-- JS yahan data bharegi -->
-        </div>
+        <section class="data-section">
+            <h3 class="section-label">Previous Records</h3>
+            <div class="table-container">
+                <div class="data-grid">
+                    <div class="grid-header">Date Range</div>
+                    <div class="grid-header">C1</div>
+                    <div class="grid-header">C2</div>
+                    <div class="grid-header">C3</div>
+                    <div class="grid-header">C4</div>
+                    <div class="grid-header">C5</div>
+                    <div class="grid-header">C6</div>
+                    <div class="grid-header">C7</div>
 
+                    <div class="grid-item date-cell">11 Jan - 17 Jan</div>
+                    <div class="grid-item highlight">93</div>
+                    <div class="grid-item">75</div>
+                    <div class="grid-item">89</div>
+                    <div class="grid-item">75</div>
+                    <div class="grid-item">19</div>
+                    <div class="grid-item">17</div>
+                    <div class="grid-item">20</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="rulesModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 class="modal-title">Game Rules</h2>
+            <div class="rules-list">
+                <div class="rule-card">
+                    <span class="rule-no">1</span>
+                    <p>Game ka last Time: <span class="gold-text">5:00 PM</span></p>
+                </div>
+                <div class="rule-card">
+                    <span class="rule-no">2</span>
+                    <p>Single Digit ka 1 ka <span class="gold-text">10 guna</span> milega</p>
+                </div>
+                <div class="rule-card">
+                    <span class="rule-no">3</span>
+                    <p>Double Digit ka 1 ka <span class="gold-text">100 guna</span> milega</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Hamari Javascript (Dimag) file ko HTML se jodna -->
-    <script src="script.js"></script> 
+    <script src="script.js"></script>
 </body>
 </html>

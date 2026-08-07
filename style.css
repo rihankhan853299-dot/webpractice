@@ -17,8 +17,8 @@ body {
 
 /* Navbar Main Container */
 .navbar {
-    display: flex;
-    justify-content: space-between;
+    display:flex;
+     gap:5px;
     align-items: center;
     padding: 1.2rem 4%;
     background: rgba(26, 26, 36, 0.75); /* Glassmorphism effect */

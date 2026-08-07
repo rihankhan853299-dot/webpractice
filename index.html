@@ -1,111 +1,45 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Game Dashboard</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@700;800&family=Noto+Sans+Devanagari:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Premium Music App Navbar</title>
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://jsdelivr.net">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="background-blobs">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-    </div>
-
-    <main class="dashboard-wrapper">
-        <header class="main-header">
-            <h1 class="header-title">Live Result</h1>
-            <div class="result-container">
-                <p class="main-result">93</p>
-                <span class="live-badge"><span class="dot"></span> LIVE</span>
-            </div>
-        </header>
-
-        <div class="control-panel">
-            <div class="action-buttons">
-                <button class="btn btn-play" onclick="window.location.href='https://wa.me/91XXXXXXXXXX?text=mujhe%20Game%20Play%20karna%20h'">
-                    <i class="fas fa-gamepad"></i> Play GAME
-                </button>
-                <button class="btn btn-vip"><i class="fas fa-crown"></i> VIP GAME</button>
-                <button class="btn btn-rules" id="rulesBtn">
-                    <i class="fas fa-book"></i> GAME Rules
-                </button>
-            </div>
-
-            <div class="guessing-box">
-                <div class="guessing-inner">
-                    <h2 class="guessing-title"><i class="fas fa-lightbulb"></i> आज की Guessing</h2>
-                    <div class="guessing-item">
-                        <span class="label">Single Digit</span>
-                        <span class="data">5, 9, 7, 3, 2</span>
-                    </div>
-                    <div class="guessing-item">
-                        <span class="label">Double Digit</span>
-                        <span class="data">23, 44, 55, 68, 89, 97, 98</span>
-                    </div>
-                </div>
-            </div>
+    <nav class="navbar">
+        <!-- Logo Section -->
+        <div class="nav-logo">
+            <i class="bi bi-vinyl-fill logo-icon"></i>
+            <span>Mus<span class="accent-text">Tube</span></span>
         </div>
 
-        <section class="data-section">
-            <h3 class="section-label">Previous Records</h3>
-            <div class="table-container">
-                <div class="data-grid">
-                    <div class="grid-header">Date Range</div>
-                    <div class="grid-header">C1</div>
-                    <div class="grid-header">C2</div>
-                    <div class="grid-header">C3</div>
-                    <div class="grid-header">C4</div>
-                    <div class="grid-header">C5</div>
-                    <div class="grid-header">C6</div>
-                    <div class="grid-header">C7</div>
+        <!-- Desktop Navigation Links -->
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#" class="active"><i class="bi bi-house-door"></i> Home</a></li>
+            <li><a href="#"><i class="bi bi-compass"></i> Discover</a></li>
+            <li><a href="#"><i class="bi bi-music-note-list"></i> Playlist</a></li>
+            <li><a href="#"><i class="bi bi-heart"></i> Favorites</a></li>
+        </ul>
 
-                    <div class="grid-item date-cell">11 Jan - 17 Jan</div>
-                    <div class="grid-item highlight" data-label="C1">93</div>
-                    <div class="grid-item" data-label="C2">75</div>
-                    <div class="grid-item" data-label="C3">89</div>
-                    <div class="grid-item" data-label="C4">75</div>
-                    <div class="grid-item" data-label="C5">19</div>
-                    <div class="grid-item" data-label="C6">17</div>
-                    <div class="grid-item" data-label="C7">20</div>
-
-                    <div class="grid-item date-cell">18 Jan - 24 Jan</div>
-                    <div class="grid-item" data-label="C1">19</div>
-                    <div class="grid-item" data-label="C2">67</div>
-                    <div class="grid-item highlight" data-label="C3">75</div>
-                    <div class="grid-item" data-label="C4">89</div>
-                    <div class="grid-item" data-label="C5">88</div>
-                    <div class="grid-item" data-label="C6">75</div>
-                    <div class="grid-item" data-label="C7">24</div>
-                </div>
+        <!-- Right Side: Search & Profile -->
+        <div class="nav-actions">
+            <div class="search-box">
+                <i class="bi bi-search search-icon"></i>
+                <input type="text" placeholder="Search songs, artists...">
             </div>
-        </section>
-    </main>
-
-    <div id="rulesModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2 class="modal-title">Game Rules</h2>
-            <div class="rules-list">
-                <div class="rule-card">
-                    <span class="rule-no">1</span>
-                    <p>Game ka last Time: <span class="gold-text">5:00 PM</span></p>
-                </div>
-                <div class="rule-card">
-                    <span class="rule-no">2</span>
-                    <p>Single Digit ka 1 ka <span class="gold-text">10 guna</span> milega</p>
-                </div>
-                <div class="rule-card">
-                    <span class="rule-no">3</span>
-                    <p>Double Digit ka 1 ka <span class="gold-text">100 guna</span> milega</p>
-                </div>
+            <div class="user-profile">
+                <img src="https://unsplash.com" alt="Profile">
             </div>
+            <!-- Hamburger Menu for Mobile -->
+            <button class="menu-toggle" id="menuToggle">
+                <i class="bi bi-list"></i>
+            </button>
         </div>
-    </div>
+    </nav>
 
     <script src="script.js"></script>
 </body>

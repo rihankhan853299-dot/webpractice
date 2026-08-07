@@ -1,21 +1,28 @@
-// Get elements
-const modal = document.getElementById("rulesModal");
-const btn = document.getElementById("rulesBtn");
-const closeBtn = document.querySelector(".close-btn");
+document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    const toggleIcon = menuToggle.querySelector("i");
 
-// Function to open modal
-btn.onclick = function() {
-    modal.style.display = "flex";
-}
+    // Toggle menu on click
+    menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
 
-// Function to close modal using (x)
-closeBtn.onclick = function() {
-    modal.style.display = "none";
-}
+        // Icon change script (Hamburger menu icon transforms into 'X' close icon)
+        if (navLinks.classList.contains("active")) {
+            toggleIcon.classList.remove("bi-list");
+            toggleIcon.classList.add("bi-x-lg");
+        } else {
+            toggleIcon.classList.remove("bi-x-lg");
+            toggleIcon.classList.add("bi-list");
+        }
+    });
 
-// Function to close modal by clicking outside
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
+    // Close menu when clicking outside of it
+    document.addEventListener("click", (event) => {
+        if (!menuToggle.contains(event.target) && !navLinks.contains(event.target)) {
+            navLinks.classList.remove("active");
+            toggleIcon.classList.remove("bi-x-lg");
+            toggleIcon.classList.add("bi-list");
+        }
+    });
+});

@@ -1,0 +1,12 @@
+/* 768px ya usse choti screen ke liye */
+@media (max-width: 768px) {
+
+@import url('https://googleapis.com');
+
+  body {
+    background-color: lightblue;
+  }
+
+
+}
+
